@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Tasks from "../components/pages/ListTasks";
+import BulkDelete from "../components/pages/BulkDelete";
+import CreateTask from "../components/pages/CreateTask";
 
 interface Props {}
 
@@ -23,7 +25,24 @@ export const Routes: FC = (props: Props): JSX.Element => {
     //     );
     //   })}
     // </Switch>
-    <Tasks />
+    // <Switch>
+    //   {Object.values(routes).map((route: any) => {
+    //     return (
+    //       <Route
+    //         key={route.title}
+    //         title={route.title}
+    //         path={route.path}
+    //         component={route.component}
+    //       />
+    //     );
+    //   })}
+    // </Switch>
+
+    // <Tasks />
+
+    // <BulkDelete />
+
+    <CreateTask />
   );
 };
 
@@ -35,6 +54,16 @@ const routes = {
   },
   TASKS_LIST: {
     path: "/list-tasks",
+    title: "TASKS",
+    component: Tasks,
+  },
+  BULK_DELETE: {
+    path: "/bulk-delete",
+    title: "TASKS",
+    component: Tasks,
+  },
+  CREATE_TASK: {
+    path: "/create-task",
     title: "TASKS",
     component: Tasks,
   },

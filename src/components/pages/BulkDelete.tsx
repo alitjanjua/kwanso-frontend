@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import TaskCard from "../common/taskCard";
 
@@ -11,8 +10,12 @@ const Container = styled.div`
   position: absolute;
 `;
 
+const DeleteButton = styled.button`
+  color: primary;
+`;
+
 export default function ListTasks() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<any>([]);
 
   useEffect(() => {
     (async () => {
@@ -31,11 +34,25 @@ export default function ListTasks() {
       }
     })();
   }, []);
+
+  const handleCheck = (value: string, checked: boolean) => {
+    let index = tasks.findIndex((task: any) => task._id === value);
+    let newTasks = tasks;
+    newTasks[index].checked = checked;
+    setTasks(newTasks);
+  };
+
+  const deleteTasks = () => {
+    let newTasks = tasks.filter((task: any) => !task.checked);
+    setTasks(newTasks);
+  };
+
   return (
     <>
       <Container>
-        {tasks.map((task, index) => (
-          <TaskCard task={task} />
+        <DeleteButton onClick={deleteTasks}>Delete Selected Tasks</DeleteButton>
+        {tasks.map((task: any) => (
+          <TaskCard task={task} enableDelete={true} handleCheck={handleCheck} />
         ))}
       </Container>
     </>
