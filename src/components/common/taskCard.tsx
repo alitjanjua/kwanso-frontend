@@ -2,18 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const CardWrapper = styled.div`
-  overflow: hidden;
-  padding: 0 0 32px;
+  background: papayawhip;
   margin: 48px auto 0;
-  width: 300px;
-  height: 200px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
-  border-radius: 5px;
+  width: 235px;
+  height: 135px;
+  border-radius: 2px;
 `;
 
-const CardHeading = styled.h3`
+const CardHeading = styled.section`
+  font-size: 1.5em;
   text-align: center;
-  text-decoration: solid;
+  margin-top: 50px;
+  color: palevioletred;
 `;
 
 interface IProps {
@@ -29,7 +29,7 @@ interface IProps {
 export default function TaskCard({ task, enableDelete, handleCheck }: IProps) {
   return (
     <CardWrapper>
-      {enableDelete && (
+      {enableDelete && handleCheck && (
         <input
           id={task._id}
           name={task._id}
@@ -37,7 +37,6 @@ export default function TaskCard({ task, enableDelete, handleCheck }: IProps) {
           value={task._id}
           checked={task.checked}
           onChange={(event) =>
-            handleCheck &&
             handleCheck(event?.target?.value, event?.target?.checked)
           }
         />
