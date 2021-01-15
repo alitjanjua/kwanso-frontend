@@ -15,7 +15,7 @@ export default function ListTasks() {
   useEffect(() => {
     (async () => {
       const response: any = await request({
-        url: "http://localhost:4000/task/list-tasks",
+        url: "http://localhost:4000/list-tasks",
         method: "GET",
       });
       if (response && response.data && response.data.tasks) {

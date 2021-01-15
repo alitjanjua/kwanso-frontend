@@ -40,7 +40,7 @@ export default function CreateTask() {
 
   const onCreateTask = async () => {
     const response: any = await request({
-      url: "http://localhost:4000/task/create-task",
+      url: "http://localhost:4000/create-task",
       method: "POST",
       data: { name: taskName },
     });
